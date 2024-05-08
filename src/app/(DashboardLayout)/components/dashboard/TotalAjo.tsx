@@ -6,7 +6,7 @@ import { IconArrowUpLeft } from "@tabler/icons-react";
 
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
 
-const TrafficDistribution = () => {
+const TotalAjo = () => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -63,7 +63,7 @@ const TrafficDistribution = () => {
   const seriescolumnchart: any = [5368, 3500, 4106];
 
   return (
-    <DashboardCard title="Traffic Distribution">
+    <DashboardCard title="Total Ajo Amount">
       <Grid container spacing={3}>
         {/* column */}
         <Grid item xs={6} sm={7}>
@@ -140,4 +140,4 @@ const TrafficDistribution = () => {
   );
 };
 
-export default TrafficDistribution;
+export default TotalAjo;

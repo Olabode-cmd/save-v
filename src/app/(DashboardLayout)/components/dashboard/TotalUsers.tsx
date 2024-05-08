@@ -13,48 +13,48 @@ import DashboardCard from "@/app/(DashboardLayout)//components/shared/DashboardC
 import TableContainer from "@mui/material/TableContainer";
 import BlankCard from "../shared/BlankCard";
 
-const products = [
+const users = [
   {
     id: "1",
     name: "Sunil Joshi",
-    post: "Web Designer",
+    joined: "Joined 2 days ago",
     pname: "Elite Admin",
-    priority: "Low",
-    pbg: "primary.main",
-    budget: "3.9",
+    status: "Pending",
+    pbg: "secondary.main",
+    savings: "3.9",
   },
   {
     id: "2",
     name: "Andrew McDownland",
-    post: "Project Manager",
+    joined: "Joined 4 days ago",
     pname: "Real Homes WP Theme",
-    priority: "Medium",
+    status: "Pending",
     pbg: "secondary.main",
-    budget: "24.5",
+    savings: "24.5",
   },
   {
     id: "3",
     name: "Christopher Jamil",
-    post: "Project Manager",
+    joined: "Joined 2 weeks ago",
     pname: "MedicalPro WP Theme",
-    priority: "High",
-    pbg: "error.main",
-    budget: "12.8",
+    status: "Verified",
+    pbg: "success.main",
+    savings: "12.8",
   },
   {
     id: "4",
     name: "Nirav Joshi",
-    post: "Frontend Engineer",
+    joined: "Joined 3 weeks ago",
     pname: "Hosting Press HTML",
-    priority: "Critical",
+    status: "Verified",
     pbg: "success.main",
-    budget: "2.4",
+    savings: "2.4",
   },
 ];
 
-const TopPayingClients = () => {
+const TotalUsers = () => {
   return (
-    <DashboardCard title="Top Paying Clients">
+    <DashboardCard title="Total Users">
       <Box sx={{ overflow: "auto" }}>
         <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
           <Table
@@ -71,7 +71,7 @@ const TopPayingClients = () => {
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Assigned
+                    Name
                   </Typography>
                 </TableCell>
                 <TableCell>
@@ -81,19 +81,19 @@ const TopPayingClients = () => {
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Priority
+                    Verified?
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Budget
+                    Savings
                   </Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {products.map((product) => (
-                <TableRow key={product.name}>
+              {users.map((user) => (
+                <TableRow key={user.name}>
                   <TableCell>
                     <Typography
                       sx={{
@@ -101,7 +101,7 @@ const TopPayingClients = () => {
                         fontWeight: "500",
                       }}
                     >
-                      {product.id}
+                      {user.id}
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -113,7 +113,7 @@ const TopPayingClients = () => {
                     >
                       <Box>
                         <Typography variant="subtitle2" fontWeight={600}>
-                          {product.name}
+                          {user.name}
                         </Typography>
                         <Typography
                           color="textSecondary"
@@ -121,7 +121,7 @@ const TopPayingClients = () => {
                             fontSize: "13px",
                           }}
                         >
-                          {product.post}
+                          {user.joined}
                         </Typography>
                       </Box>
                     </Box>
@@ -132,22 +132,22 @@ const TopPayingClients = () => {
                       variant="subtitle2"
                       fontWeight={400}
                     >
-                      {product.pname}
+                      {user.pname}
                     </Typography>
                   </TableCell>
                   <TableCell>
                     <Chip
                       sx={{
                         px: "4px",
-                        backgroundColor: product.pbg,
+                        backgroundColor: user.pbg,
                         color: "#fff",
                       }}
                       size="small"
-                      label={product.priority}
+                      label={user.status}
                     ></Chip>
                   </TableCell>
                   <TableCell align="right">
-                    <Typography variant="h6">${product.budget}k</Typography>
+                    <Typography variant="h6">${user.savings}k</Typography>
                   </TableCell>
                 </TableRow>
               ))}
@@ -159,4 +159,4 @@ const TopPayingClients = () => {
   );
 };
 
-export default TopPayingClients;
+export default TotalUsers;

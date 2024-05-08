@@ -6,6 +6,9 @@ import {
   IconMoodHappy,
   IconTypography,
   IconUserPlus,
+  IconUsersGroup,
+  IconWallet,
+  IconDiamond,
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
@@ -23,8 +26,22 @@ const Menuitems = [
     href: "/",
   },
   {
-    navlabel: true,
-    subheader: "Utilities",
+    id: uniqueId(),
+    title: "Users",
+    icon: IconUsersGroup,
+    href: "/users",
+  },
+  {
+    id: uniqueId(),
+    title: "Savings",
+    icon: IconWallet,
+    href: "/savings",
+  },
+  {
+    id: uniqueId(),
+    title: "Ajo",
+    icon: IconDiamond,
+    href: "/ajo",
   },
   {
     id: uniqueId(),

@@ -12,7 +12,7 @@ const options = [
   "Something else here",
 ];
 
-const ProfitExpenses = () => {
+const RecentUserActivity = () => {
   // menu
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -76,7 +76,7 @@ const ProfitExpenses = () => {
       tickAmount: 4,
     },
     xaxis: {
-      categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      categories: ["Jan", "Feb", "March", "Apr", "May", "Jun", "Jul"],
       axisBorder: {
         show: false,
       },
@@ -99,7 +99,7 @@ const ProfitExpenses = () => {
 
   return (
     <DashboardCard
-      title="Profit & Expenses"
+      title="Growth Statistics (Savings)"
       action={
         <>
           <IconButton
@@ -147,4 +147,4 @@ const ProfitExpenses = () => {
   );
 };
 
-export default ProfitExpenses;
+export default RecentUserActivity;
