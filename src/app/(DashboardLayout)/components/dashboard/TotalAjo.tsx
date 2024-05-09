@@ -68,7 +68,7 @@ const TotalAjo = () => {
         {/* column */}
         <Grid item xs={6} sm={7}>
           <Typography variant="h3" fontWeight="700">
-            $36,358
+            &#8358; 36.8M
           </Typography>
           <Stack
             direction={{ xs: "column", sm: "row" }}

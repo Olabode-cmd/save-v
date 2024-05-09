@@ -1,24 +1,23 @@
-
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Avatar, Fab } from '@mui/material';
-import { IconArrowDownRight, IconCurrencyDollar } from '@tabler/icons-react';
-import DashboardCard from '@/app/(DashboardLayout)/components/shared/DashboardCard';
+import { useTheme } from "@mui/material/styles";
+import { Stack, Typography, Avatar, Fab } from "@mui/material";
+import { IconArrowDownRight, IconCurrencyDollar } from "@tabler/icons-react";
+import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
 
-const SavingsData = () => {
+const TotalWallet = () => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
-  const errorlight = '#fdede8';
+  const errorlight = "#fdede8";
 
   // chart
   const optionscolumnchart: any = {
     chart: {
-      type: 'area',
+      type: "area",
       fontFamily: "'Plus Jakarta Sans', sans-serif;",
-      foreColor: '#adb0bb',
+      foreColor: "#adb0bb",
       toolbar: {
         show: false,
       },
@@ -26,27 +25,27 @@ const SavingsData = () => {
       sparkline: {
         enabled: true,
       },
-      group: 'sparklines',
+      group: "sparklines",
     },
     stroke: {
-      curve: 'smooth',
+      curve: "smooth",
       width: 2,
     },
     fill: {
       colors: [primary],
-      type: 'solid',
+      type: "solid",
       opacity: 0.05,
     },
     markers: {
       size: 0,
     },
     tooltip: {
-      theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
+      theme: theme.palette.mode === "dark" ? "dark" : "light",
     },
   };
   const seriescolumnchart: any = [
     {
-      name: '',
+      name: "",
       color: primary,
       data: [25, 66, 20, 40, 12, 58, 20],
     },
@@ -54,7 +53,7 @@ const SavingsData = () => {
 
   return (
     <DashboardCard
-      title="Total Savings"
+      title="Total Wallet"
       action={
         <Fab color="error" size="medium" sx={{ color: "#ffffff" }}>
           <IconCurrencyDollar width={24} />
@@ -72,7 +71,7 @@ const SavingsData = () => {
     >
       <>
         <Typography variant="h3" fontWeight="700" mt="-20px">
-          &#8358; 40.4M
+          &#8358; 45.4M
         </Typography>
         <Stack direction="row" spacing={1} my={1} alignItems="center">
           <Avatar sx={{ bgcolor: errorlight, width: 21, height: 21 }}>
@@ -90,4 +89,4 @@ const SavingsData = () => {
   );
 };
 
-export default SavingsData;
+export default TotalWallet;

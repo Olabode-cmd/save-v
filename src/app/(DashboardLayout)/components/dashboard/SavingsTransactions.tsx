@@ -14,52 +14,48 @@ import { IconFilePencil } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)//components/shared/DashboardCard";
 import TableContainer from "@mui/material/TableContainer";
 import BlankCard from "../shared/BlankCard";
-import usersData from '../../data/users.json'
+// import usersData from "../../data/users.json";
 
 import Link from "next/link";
 
-// const users = [
-//   {
-//     id: "1",
-//     name: "Sunil Joshi",
-//     joined: "Joined 2 days ago",
-//     email: "suni@yahoo.com",
-//     status: "Pending",
-//     pbg: "secondary.main",
-//     savings: "3.9",
-//   },
-//   {
-//     id: "2",
-//     name: "Andrew McDownland",
-//     joined: "Joined 4 days ago",
-//     email: "andrewmc@gmail.com",
-//     status: "Pending",
-//     pbg: "secondary.main",
-//     savings: "24.5",
-//   },
-//   {
-//     id: "3",
-//     name: "Christopher Jamil",
-//     joined: "Joined 2 weeks ago",
-//     email: "chris@outlook.com",
-//     status: "Verified",
-//     pbg: "success.main",
-//     savings: "12.8",
-//   },
-//   {
-//     id: "4",
-//     name: "Nirav Joshi",
-//     joined: "Joined 3 weeks ago",
-//     email: "nirav77@gmail.com",
-//     status: "Verified",
-//     pbg: "success.main",
-//     savings: "2.4",
-//   },
-// ];
+const usersData = [
+  {
+    id: "1",
+    name: "Sunil Joshi",
+    joined: "2 hours ago",
+    type: "Top-up",
+    pbg: "primary.main",
+    amount: "3.9",
+  },
+  {
+    id: "2",
+    name: "Andrew McDownland",
+    joined: "4 hours ago",
+    type: "Withdrawal",
+    pbg: "success.main",
+    amount: "24.5",
+  },
+  {
+    id: "3",
+    name: "Christopher Jamil",
+    joined: "4 hours ago",
+    type: "Top-up",
+    pbg: "primary.main",
+    amount: "12.8",
+  },
+  {
+    id: "4",
+    name: "Nirav Joshi",
+    joined: "1 day ago",
+    type: "Withdrawal",
+    pbg: "success.main",
+    amount: "2.4",
+  },
+];
 
-const TotalUsers = () => {
+const SavingsTransactions = () => {
   return (
-    <DashboardCard title="Total Users">
+    <DashboardCard title="Recent Transactions (Savings)">
       <Box sx={{ overflow: "auto" }}>
         <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
           <Table
@@ -76,17 +72,12 @@ const TotalUsers = () => {
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Name
+                    User
                   </Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Email
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Verified?
+                    Type
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
@@ -137,15 +128,6 @@ const TotalUsers = () => {
                     </Box>
                   </TableCell>
                   <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      fontWeight={400}
-                    >
-                      {user.email}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
                     <Chip
                       sx={{
                         px: "4px",
@@ -153,17 +135,17 @@ const TotalUsers = () => {
                         color: "#fff",
                       }}
                       size="small"
-                      label={user.status}
+                      label={user.type}
                     ></Chip>
                   </TableCell>
                   <TableCell align="right">
                     <Typography variant="h6">
-                      &#8358; {user.savings}K
+                      &#8358; {user.amount}K
                     </Typography>
                   </TableCell>
                   <TableCell>
                     <Link href={`/users/${user.id}`}>
-                      <Button variant="contained">View user</Button>
+                      <Button variant="contained">View details</Button>
                     </Link>
                   </TableCell>
                 </TableRow>
@@ -176,4 +158,4 @@ const TotalUsers = () => {
   );
 };
 
-export default TotalUsers;
+export default SavingsTransactions;

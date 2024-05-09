@@ -99,7 +99,7 @@ const RecentUserActivity = () => {
 
   return (
     <DashboardCard
-      title="Growth Statistics (Savings)"
+      title="Growth Statistics (Ajo and Savings)"
       action={
         <>
           <IconButton

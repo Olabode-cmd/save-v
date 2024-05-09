@@ -4,20 +4,38 @@ import PageContainer from '@/app/(DashboardLayout)/components/container/PageCont
 // components
 import RecentUserActivity from '@/app/(DashboardLayout)/components/dashboard/RecentUserActivity';
 import TotalAjo from '@/app/(DashboardLayout)/components/dashboard/TotalAjo';
-import UpcomingSchedules from '@/app/(DashboardLayout)/components/dashboard/UpcomingSchedules';
 import TotalUsers from '@/app/(DashboardLayout)/components/dashboard/TotalUsers';
-import Blog from '@/app/(DashboardLayout)/components/dashboard/Blog';
 import SavingsData from './components/dashboard/SavingsData';
+import AllUsers from './components/dashboard/AllUsers';
+import TotalWallet from './components/dashboard/TotalWallet';
+import SavingsTransactions from './components/dashboard/SavingsTransactions';
 
 const Dashboard = () => {
   return (
     <PageContainer title="Dashboard" description="this is Dashboard">
       <Box>
         <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>
+            <AllUsers />
+          </Grid>
+
+          <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>
+            <TotalAjo />
+          </Grid>
+
+          <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>
+            <SavingsData />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>
+            <TotalWallet />
+          </Grid>
           <Grid item xs={12} lg={8}>
             <RecentUserActivity />
           </Grid>
-          <Grid item xs={12} lg={4}>
+          {/* <Grid item xs={12} lg={4}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <TotalAjo />
@@ -26,20 +44,23 @@ const Dashboard = () => {
                 <SavingsData />
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
           {/* <Grid item xs={12} lg={4}>
             <UpcomingSchedules />
           </Grid> */}
-          <Grid item xs={12} lg={12}>
+          <Grid item xs={12} lg={12} sx={{ marginBottom: "10px" }}>
             <TotalUsers />
           </Grid>
-          {/* <Grid item xs={12}>
-            <Blog />
-          </Grid> */}
+        </Grid>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} sx={{ marginBottom: "10px" }}>
+            <SavingsTransactions />
+          </Grid>
         </Grid>
       </Box>
     </PageContainer>
-  )
+  );
 }
 
 export default Dashboard;
