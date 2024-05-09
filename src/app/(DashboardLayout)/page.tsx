@@ -5,7 +5,7 @@ import PageContainer from '@/app/(DashboardLayout)/components/container/PageCont
 import RecentUserActivity from '@/app/(DashboardLayout)/components/dashboard/RecentUserActivity';
 import TotalAjo from '@/app/(DashboardLayout)/components/dashboard/TotalAjo';
 import UpcomingSchedules from '@/app/(DashboardLayout)/components/dashboard/UpcomingSchedules';
-import TopPayingClients from '@/app/(DashboardLayout)/components/dashboard/TotalUsers';
+import TotalUsers from '@/app/(DashboardLayout)/components/dashboard/TotalUsers';
 import Blog from '@/app/(DashboardLayout)/components/dashboard/Blog';
 import SavingsData from './components/dashboard/SavingsData';
 
@@ -31,7 +31,7 @@ const Dashboard = () => {
             <UpcomingSchedules />
           </Grid> */}
           <Grid item xs={12} lg={12}>
-            <TopPayingClients />
+            <TotalUsers />
           </Grid>
           {/* <Grid item xs={12}>
             <Blog />
