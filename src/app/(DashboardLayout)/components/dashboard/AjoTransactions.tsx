@@ -22,44 +22,52 @@ const usersData = [
   {
     id: "1",
     name: "Sunil Joshi",
-    joined: "2 hours ago",
+    createdDate: "Created 2 hours ago",
     type: "Top-up",
     pbg: "primary.main",
-    amountAdded: "2,000",
-    amount: "3.9",
+    amount: "2,000",
+    totalAmount: "3.9",
+    transactionUser: "Angeline Row",
+    time: "30 seconds ago",
   },
   {
     id: "2",
     name: "Andrew McDownland",
-    joined: "4 hours ago",
+    createdDate: "Created 4 hours ago",
     type: "Withdrawal",
     pbg: "success.main",
-    amountAdded: "2,500",
-    amount: "24.5",
+    amount: "2,500",
+    totalAmount: "24.5",
+    transactionUser: "Cait Row",
+    time: "3 minutes ago",
   },
   {
     id: "3",
     name: "Christopher Jamil",
-    joined: "4 hours ago",
+    createdDate: "Created 4 hours ago",
     type: "Top-up",
     pbg: "primary.main",
-    amountAdded: "12,000",
-    amount: "12.8",
+    amount: "12,000",
+    totalAmount: "12.8",
+    transactionUser: "Emily Row",
+    time: "2 hours ago",
   },
   {
     id: "4",
     name: "Nirav Joshi",
-    joined: "1 day ago",
+    createdDate: "Created 1 day ago",
     type: "Withdrawal",
     pbg: "success.main",
-    amountAdded: "30,000",
-    amount: "2.4",
+    amount: "30,000",
+    totalAmount: "2.4",
+    transactionUser: "Angeline Row",
+    time: "4 hours ago",
   },
 ];
 
-const SavingsTransactions = () => {
+const AjoTransactions = () => {
   return (
-    <DashboardCard title="Recent Transactions (Savings)">
+    <DashboardCard title="Recent Transactions (Ajo)">
       <Box sx={{ overflow: "auto" }}>
         <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
           <Table
@@ -76,6 +84,11 @@ const SavingsTransactions = () => {
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
+                    Moderator
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
                     User
                   </Typography>
                 </TableCell>
@@ -86,12 +99,12 @@ const SavingsTransactions = () => {
                 </TableCell>
                 <TableCell align="right">
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Amount Added
+                    Amount
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Savings
+                    Total Amount
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
@@ -131,7 +144,29 @@ const SavingsTransactions = () => {
                             fontSize: "13px",
                           }}
                         >
-                          {user.joined}
+                          {user.createdDate}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </TableCell>
+                  <TableCell>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Box>
+                        <Typography variant="subtitle2" fontWeight={600}>
+                          {user.transactionUser}
+                        </Typography>
+                        <Typography
+                          color="textSecondary"
+                          sx={{
+                            fontSize: "13px",
+                          }}
+                        >
+                          {user.time}
                         </Typography>
                       </Box>
                     </Box>
@@ -149,11 +184,11 @@ const SavingsTransactions = () => {
                   </TableCell>
                   <TableCell align="right">
                     <Typography variant="h6">
-                      &#8358; {user.amountAdded}
+                      &#8358; {user.amount}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <Typography variant="h6">&#8358; {user.amount}K</Typography>
+                    <Typography variant="h6">&#8358; {user.totalAmount}K</Typography>
                   </TableCell>
                   <TableCell align="right">
                     <Link href={`/users/${user.id}`}>
@@ -170,4 +205,4 @@ const SavingsTransactions = () => {
   );
 };
 
-export default SavingsTransactions;
+export default AjoTransactions;

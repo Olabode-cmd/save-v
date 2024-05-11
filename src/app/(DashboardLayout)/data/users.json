@@ -6,7 +6,7 @@
     "email": "suni@yahoo.com",
     "status": "Pending",
     "pbg": "secondary.main",
-    "savings": "3.9"
+    "wallet": "3.9"
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@
     "email": "andrewmc@gmail.com",
     "status": "Pending",
     "pbg": "secondary.main",
-    "savings": "24.5"
+    "wallet": "24.5"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "email": "chris@outlook.com",
     "status": "Verified",
     "pbg": "success.main",
-    "savings": "12.8"
+    "wallet": "12.8"
   },
   {
     "id": "4",
@@ -33,6 +33,6 @@
     "email": "nirav77@gmail.com",
     "status": "Verified",
     "pbg": "success.main",
-    "savings": "2.4"
+    "wallet": "2.4"
   }
 ]

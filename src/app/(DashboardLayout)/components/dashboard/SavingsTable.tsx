@@ -14,52 +14,55 @@ import { IconFilePencil } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)//components/shared/DashboardCard";
 import TableContainer from "@mui/material/TableContainer";
 import BlankCard from "../shared/BlankCard";
-// import usersData from "../../data/users.json";
 
 import Link from "next/link";
 
 const usersData = [
   {
-    id: "1",
+    id: "SAV001",
     name: "Sunil Joshi",
-    joined: "2 hours ago",
-    type: "Top-up",
-    pbg: "primary.main",
-    amountAdded: "2,000",
-    amount: "3.9",
+    created: "Created 2 days ago",
+    email: "suni@yahoo.com",
+    status: "Pending",
+    pbg: "secondary.main",
+    savings: "39,000",
+    savingsName: "Sunil Macbook Savings",
   },
   {
-    id: "2",
+    id: "SAV002",
     name: "Andrew McDownland",
-    joined: "4 hours ago",
-    type: "Withdrawal",
-    pbg: "success.main",
-    amountAdded: "2,500",
-    amount: "24.5",
+    created: "Created 4 days ago",
+    email: "andrewmc@gmail.com",
+    status: "Pending",
+    pbg: "secondary.main",
+    savings: "21,450",
+    savingsName: "Andrew tuition Savings",
   },
   {
-    id: "3",
+    id: "SAV003",
     name: "Christopher Jamil",
-    joined: "4 hours ago",
-    type: "Top-up",
-    pbg: "primary.main",
-    amountAdded: "12,000",
-    amount: "12.8",
+    created: "Created 2 weeks ago",
+    email: "chris@outlook.com",
+    status: "Verified",
+    pbg: "success.main",
+    savings: "12,900",
+    savingsName: "Christmas Savings",
   },
   {
-    id: "4",
+    id: "SAV004",
     name: "Nirav Joshi",
-    joined: "1 day ago",
-    type: "Withdrawal",
+    created: "Created 3 weeks ago",
+    email: "nirav77@gmail.com",
+    status: "Verified",
     pbg: "success.main",
-    amountAdded: "30,000",
-    amount: "2.4",
+    savings: "55,200",
+    savingsName: "Nirav tuition",
   },
 ];
 
-const SavingsTransactions = () => {
+const SavingsTable = () => {
   return (
-    <DashboardCard title="Recent Transactions (Savings)">
+    <DashboardCard title="Customer Savings List">
       <Box sx={{ overflow: "auto" }}>
         <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
           <Table
@@ -76,22 +79,17 @@ const SavingsTransactions = () => {
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    User
+                    Name
                   </Typography>
                 </TableCell>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Type
+                    User
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Amount Added
-                  </Typography>
-                </TableCell>
-                <TableCell align="right">
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Savings
+                    Amount
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
@@ -123,7 +121,7 @@ const SavingsTransactions = () => {
                     >
                       <Box>
                         <Typography variant="subtitle2" fontWeight={600}>
-                          {user.name}
+                          {user.savingsName}
                         </Typography>
                         <Typography
                           color="textSecondary"
@@ -131,29 +129,20 @@ const SavingsTransactions = () => {
                             fontSize: "13px",
                           }}
                         >
-                          {user.joined}
+                          {user.created}
                         </Typography>
                       </Box>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    <Chip
-                      sx={{
-                        px: "4px",
-                        backgroundColor: user.pbg,
-                        color: "#fff",
-                      }}
-                      size="small"
-                      label={user.type}
-                    ></Chip>
-                  </TableCell>
-                  <TableCell align="right">
                     <Typography variant="h6">
-                      &#8358; {user.amountAdded}
+                      {user.name}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <Typography variant="h6">&#8358; {user.amount}K</Typography>
+                    <Typography variant="h6">
+                      &#8358; {user.savings}
+                    </Typography>
                   </TableCell>
                   <TableCell align="right">
                     <Link href={`/users/${user.id}`}>
@@ -170,4 +159,4 @@ const SavingsTransactions = () => {
   );
 };
 
-export default SavingsTransactions;
+export default SavingsTable;

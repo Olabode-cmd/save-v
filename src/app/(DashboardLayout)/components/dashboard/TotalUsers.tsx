@@ -91,7 +91,7 @@ const TotalUsers = () => {
                 </TableCell>
                 <TableCell align="right">
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Savings
+                    Wallet
                   </Typography>
                 </TableCell>
                 <TableCell align="right">
@@ -158,10 +158,10 @@ const TotalUsers = () => {
                   </TableCell>
                   <TableCell align="right">
                     <Typography variant="h6">
-                      &#8358; {user.savings}K
+                      &#8358; {user.wallet}K
                     </Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell align="right">
                     <Link href={`/users/${user.id}`}>
                       <Button variant="contained">View user</Button>
                     </Link>
