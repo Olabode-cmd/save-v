@@ -16,53 +16,50 @@ import TableContainer from "@mui/material/TableContainer";
 import BlankCard from "../shared/BlankCard";
 
 import Link from "next/link";
+import { useReducer } from "react";
 
-const usersData = [
+const SavingsData = [
   {
     id: "SAV001",
-    name: "Sunil Joshi",
+    user: "Segun Adams",
     created: "Created 2 days ago",
-    email: "suni@yahoo.com",
-    status: "Pending",
-    pbg: "secondary.main",
-    savings: "39,000",
-    savingsName: "Sunil Macbook Savings",
+    amount: "39,000",
+    savingsName: "Sunil Macbook",
+    type: "Target",
+    goal: "500,000",
   },
   {
     id: "SAV002",
-    name: "Andrew McDownland",
+    useReducer: "Boluwatife Alao",
     created: "Created 4 days ago",
-    email: "andrewmc@gmail.com",
-    status: "Pending",
-    pbg: "secondary.main",
-    savings: "21,450",
-    savingsName: "Andrew tuition Savings",
+    savingsName: "Ojo Ola Birthday",
+    type: "Group",
+    goal: "300,000",
+    amount: "150,000",
   },
   {
     id: "SAV003",
-    name: "Christopher Jamil",
+    user: "Christopher Jamil",
     created: "Created 2 weeks ago",
-    email: "chris@outlook.com",
-    status: "Verified",
-    pbg: "success.main",
-    savings: "12,900",
     savingsName: "Christmas Savings",
+    type: "Target",
+    goal: "100,000",
+    amount: "5,000",
   },
   {
     id: "SAV004",
-    name: "Nirav Joshi",
-    created: "Created 3 weeks ago",
-    email: "nirav77@gmail.com",
-    status: "Verified",
-    pbg: "success.main",
-    savings: "55,200",
-    savingsName: "Nirav tuition",
+    user: "Christopher Jamil",
+    created: "Created 10 months ago",
+    savingsName: "Car Savings",
+    type: "Target",
+    goal: "10,000,000",
+    amount: "500,000",
   },
 ];
 
 const SavingsTable = () => {
   return (
-    <DashboardCard title="Customer Savings List">
+    <DashboardCard title="All Active Savings Plans">
       <Box sx={{ overflow: "auto" }}>
         <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
           <Table
@@ -74,24 +71,34 @@ const SavingsTable = () => {
               <TableRow>
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    Id
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
                     Name
                   </Typography>
                 </TableCell>
+
                 <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
-                    User
+                    Created By
                   </Typography>
                 </TableCell>
-                <TableCell align="right">
+
+                <TableCell>
                   <Typography variant="subtitle2" fontWeight={600}>
                     Amount
                   </Typography>
                 </TableCell>
+
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Goal
+                  </Typography>
+                </TableCell>
+
+                <TableCell>
+                  <Typography variant="subtitle2" fontWeight={600}>
+                    Savings Type
+                  </Typography>
+                </TableCell>
+
                 <TableCell align="right">
                   <Typography variant="subtitle2" fontWeight={600}>
                     Action
@@ -100,18 +107,8 @@ const SavingsTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {usersData.map((user) => (
-                <TableRow key={user.name}>
-                  <TableCell>
-                    <Typography
-                      sx={{
-                        fontSize: "15px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      {user.id}
-                    </Typography>
-                  </TableCell>
+              {SavingsData.map((savings) => (
+                <TableRow key={savings.id}>
                   <TableCell>
                     <Box
                       sx={{
@@ -121,7 +118,7 @@ const SavingsTable = () => {
                     >
                       <Box>
                         <Typography variant="subtitle2" fontWeight={600}>
-                          {user.savingsName}
+                          {savings.savingsName}
                         </Typography>
                         <Typography
                           color="textSecondary"
@@ -129,23 +126,31 @@ const SavingsTable = () => {
                             fontSize: "13px",
                           }}
                         >
-                          {user.created}
+                          {savings.created}
                         </Typography>
                       </Box>
                     </Box>
                   </TableCell>
+
+                  <TableCell>
+                    <Typography variant="h6">{savings.user}</Typography>
+                  </TableCell>
+
                   <TableCell>
                     <Typography variant="h6">
-                      {user.name}
+                      &#8358; {savings.amount}
                     </Typography>
                   </TableCell>
-                  <TableCell align="right">
-                    <Typography variant="h6">
-                      &#8358; {user.savings}
-                    </Typography>
+
+                  <TableCell>
+                    <Typography variant="h6">&#8358; {savings.goal}</Typography>
                   </TableCell>
-                  <TableCell align="right">
-                    <Link href={`/users/${user.id}`}>
+
+                  <TableCell>
+                    <Typography variant="h6">{savings.type}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Link href={`/savings/${savings.id}`}>
                       <Button variant="contained">View details</Button>
                     </Link>
                   </TableCell>

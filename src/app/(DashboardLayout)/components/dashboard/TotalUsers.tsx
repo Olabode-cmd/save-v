@@ -10,6 +10,7 @@ import {
   Chip,
   Paper,
 } from "@mui/material";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { IconFilePencil } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)//components/shared/DashboardCard";
 import TableContainer from "@mui/material/TableContainer";
@@ -18,45 +19,19 @@ import usersData from '../../data/users.json'
 
 import Link from "next/link";
 
-// const users = [
-//   {
-//     id: "1",
-//     name: "Sunil Joshi",
-//     joined: "Joined 2 days ago",
-//     email: "suni@yahoo.com",
-//     status: "Pending",
-//     pbg: "secondary.main",
-//     savings: "3.9",
-//   },
-//   {
-//     id: "2",
-//     name: "Andrew McDownland",
-//     joined: "Joined 4 days ago",
-//     email: "andrewmc@gmail.com",
-//     status: "Pending",
-//     pbg: "secondary.main",
-//     savings: "24.5",
-//   },
-//   {
-//     id: "3",
-//     name: "Christopher Jamil",
-//     joined: "Joined 2 weeks ago",
-//     email: "chris@outlook.com",
-//     status: "Verified",
-//     pbg: "success.main",
-//     savings: "12.8",
-//   },
-//   {
-//     id: "4",
-//     name: "Nirav Joshi",
-//     joined: "Joined 3 weeks ago",
-//     email: "nirav77@gmail.com",
-//     status: "Verified",
-//     pbg: "success.main",
-//     savings: "2.4",
-//   },
-// ];
-
+const columns: GridColDef[] = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "firstName", headerName: "First name", width: 130 },
+  { field: "lastName", headerName: "Last name", width: 130 },
+  {
+    field: "fullName",
+    headerName: "Full name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    width: 160,
+    valueGetter: (value: any, row: { firstName: any; lastName: any; }) => `${row.firstName || ""} ${row.lastName || ""}`,
+  },
+];
 const TotalUsers = () => {
   return (
     <DashboardCard title="Total Users">

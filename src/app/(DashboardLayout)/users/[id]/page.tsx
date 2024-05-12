@@ -4,10 +4,14 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { usePathname } from "next/navigation";
-import { Grid, Box, Typography, Chip, Stack, Tab, Tabs } from "@mui/material";
+import { Grid, Box, Typography, Chip, Stack, Tab, Tabs, Modal, Button, TextField } from "@mui/material";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import DashboardCard from "../../components/shared/DashboardCard";
-import { IconCalendarCheck, IconMailCheck } from "@tabler/icons-react";
+import {
+  IconCalendarCheck,
+  IconMailCheck,
+  IconInbox,
+} from "@tabler/icons-react";
 
 import UserSavingsPlans from "../../components/dashboard/UserSavingsPlan";
 import UserAjoPlans from "../../components/dashboard/UserAjoPlans";
@@ -21,6 +25,18 @@ interface TabPanelProps {
   index: number;
   value: number;
 }
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  bgcolor: "background.paper",
+  border: "2px solid #555",
+  boxShadow: 24,
+  p: 4,
+};
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -57,6 +73,11 @@ export default function page({ params }: { params: { id: string } }) {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <PageContainer title="Users">
       <div
@@ -104,6 +125,55 @@ export default function page({ params }: { params: { id: string } }) {
 
                 <Typography>{user?.email}</Typography>
               </Stack>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={1}
+                sx={{ marginLeft: "10px" }}
+                onClick={handleOpen}
+                style={{ cursor: "pointer" }}
+              >
+                <IconInbox style={{ color: "blue" }} />
+
+                <Typography style={{ color: "blue" }}>Message user</Typography>
+              </Stack>
+
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h5"
+                    component="h2"
+                    style={{ marginBottom: "15px" }}
+                  >
+                    Message User
+                  </Typography>
+                  <TextField
+                    label="Title"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mr: 1, mb: 1 }}
+                  />
+                  <TextField
+                    label="Type your message..."
+                    variant="outlined"
+                    fullWidth
+                    sx={{ mr: 1, mb: 3 }}
+                  />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                  >
+                    Send
+                  </Button>
+                </Box>
+              </Modal>
             </Grid>
           </div>
         </DashboardCard>
@@ -141,7 +211,10 @@ export default function page({ params }: { params: { id: string } }) {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            Item One
+            <Stack direction="row">
+              <Typography>Email:</Typography>
+              <Typography> {user?.email}</Typography>
+            </Stack>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
             Item Two

@@ -17,7 +17,7 @@ const Dashboard = () => {
       <Box>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>
-            <AllUsers />
+            <AllUsers title="Total Users" value="70"/>
           </Grid>
 
           <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>

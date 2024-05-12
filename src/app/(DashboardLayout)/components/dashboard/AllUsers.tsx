@@ -5,7 +5,7 @@ import { Stack, Typography, Avatar, Fab } from "@mui/material";
 import { IconArrowDownRight, IconUsersGroup } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
 
-const AllUsers = () => {
+const AllUsers = ({title, value}) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -43,17 +43,18 @@ const AllUsers = () => {
       theme: theme.palette.mode === "dark" ? "dark" : "light",
     },
   };
+  
   const seriescolumnchart: any = [
     {
       name: "",
       color: primary,
-      data: [25, 66, 20, 40, 12, 58, 20],
+      data: [25, 66, 20, 40, 12, 58, 70],
     },
   ];
 
   return (
     <DashboardCard
-      title="Total Users"
+      title={title}
       action={
         <Fab color="primary" size="medium" sx={{ color: "#ffffff" }}>
           <IconUsersGroup width={24} />
@@ -71,7 +72,7 @@ const AllUsers = () => {
     >
       <>
         <Typography variant="h3" fontWeight="700" mt="-20px">
-          323
+          {value}
         </Typography>
         <Stack direction="row" spacing={1} my={1} alignItems="center">
           <Avatar sx={{ bgcolor: errorlight, width: 21, height: 21 }}>

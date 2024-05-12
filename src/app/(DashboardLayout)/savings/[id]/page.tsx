@@ -1,7 +1,7 @@
 "use client";
 import { Grid, Box } from "@mui/material";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
-import AllUsers from "../components/dashboard/AllUsers";
+import AllUsers from "@/app/(DashboardLayout)/components/dashboard/AllUsers";
 
 // Components
 import TotalUsers from "@/app/(DashboardLayout)/components/dashboard/TotalUsers";
