@@ -25,14 +25,14 @@ const Dashboard = () => {
           </Grid>
 
           <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>
-            <SavingsData />
+            <SavingsData title="Total Savings" amount="44.5" />
           </Grid>
         </Grid>
 
         <Grid container spacing={3} sx={{ marginBottom: "10px" }}>
           <Grid item xs={12} md={6} lg={4} sx={{ marginBottom: "10px" }}>
             <Box marginBottom={4}>
-              <TotalWallet />
+              <TotalWallet amount="40,000" title="Total Wallet" />
             </Box>
 
             <WithdrawalRequest />

@@ -4,8 +4,9 @@ import { useTheme } from "@mui/material/styles";
 import { Stack, Typography, Avatar, Fab } from "@mui/material";
 import { IconArrowDownRight, IconCurrencyDollar } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
 
-const TotalWallet = () => {
+const TotalWallet = (props: { title: string | undefined; amount: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; }) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -53,7 +54,7 @@ const TotalWallet = () => {
 
   return (
     <DashboardCard
-      title="Total Wallet"
+      title={props.title}
       action={
         <Fab color="error" size="medium" sx={{ color: "#ffffff" }}>
           <IconCurrencyDollar width={24} />
@@ -71,7 +72,7 @@ const TotalWallet = () => {
     >
       <>
         <Typography variant="h3" fontWeight="700" mt="-20px">
-          &#8358; 45.4M
+          &#8358; {props.amount}
         </Typography>
         <Stack direction="row" spacing={1} my={1} alignItems="center">
           <Avatar sx={{ bgcolor: errorlight, width: 21, height: 21 }}>

@@ -5,8 +5,9 @@ import { useTheme } from '@mui/material/styles';
 import { Stack, Typography, Avatar, Fab } from '@mui/material';
 import { IconArrowDownRight, IconCurrencyDollar } from '@tabler/icons-react';
 import DashboardCard from '@/app/(DashboardLayout)/components/shared/DashboardCard';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
 
-const SavingsData = () => {
+const SavingsData = (props: { title: string | undefined; amount: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; }) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -48,13 +49,13 @@ const SavingsData = () => {
     {
       name: '',
       color: primary,
-      data: [25, 66, 20, 40, 12, 58, 20],
+      data: [25, 16, 60, 50, 42, 18, 20],
     },
   ];
 
   return (
     <DashboardCard
-      title="Total Savings"
+      title={props.title}
       action={
         <Fab color="error" size="medium" sx={{ color: "#ffffff" }}>
           <IconCurrencyDollar width={24} />
@@ -72,7 +73,7 @@ const SavingsData = () => {
     >
       <>
         <Typography variant="h3" fontWeight="700" mt="-20px">
-          &#8358; 40.4M
+          &#8358; {props.amount}M
         </Typography>
         <Stack direction="row" spacing={1} my={1} alignItems="center">
           <Avatar sx={{ bgcolor: errorlight, width: 21, height: 21 }}>

@@ -4,7 +4,7 @@ import PageContainer from "@/app/(DashboardLayout)/components/container/PageCont
 
 // Components
 import TotalUsers from "@/app/(DashboardLayout)/components/dashboard/TotalUsers";
-import SavingsTable from "../components/dashboard/SavingsTable";
+import AjoTable from "../components/dashboard/AjoTable";
 
 const Ajo = () => {
   return (
@@ -12,7 +12,7 @@ const Ajo = () => {
       <Box>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={12}>
-            <SavingsTable />
+            <AjoTable />
           </Grid>
         </Grid>
       </Box>
