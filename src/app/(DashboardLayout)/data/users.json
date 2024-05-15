@@ -6,7 +6,10 @@
     "email": "suni@yahoo.com",
     "status": "Pending",
     "pbg": "secondary.main",
-    "wallet": "3.9"
+    "wallet": "3.9",
+    "nin": 1219921221,
+    "bvn": 234234232,
+    "phoneNumber": "08034605723"
   },
   {
     "id": "2",
@@ -15,7 +18,10 @@
     "email": "andrewmc@gmail.com",
     "status": "Pending",
     "pbg": "secondary.main",
-    "wallet": "24.5"
+    "wallet": "24.5",
+    "nin": 1219921221,
+    "bvn": 234234232,
+    "phoneNumber": "08034605723"
   },
   {
     "id": "3",
@@ -24,7 +30,10 @@
     "email": "chris@outlook.com",
     "status": "Verified",
     "pbg": "success.main",
-    "wallet": "12.8"
+    "wallet": "12.8",
+    "nin": 1219921221,
+    "bvn": 234234232,
+    "phoneNumber": "08034605723"
   },
   {
     "id": "4",
@@ -33,6 +42,9 @@
     "email": "nirav77@gmail.com",
     "status": "Verified",
     "pbg": "success.main",
-    "wallet": "2.4"
+    "wallet": "2.4",
+    "nin": 1219921221,
+    "bvn": 234234232,
+    "phoneNumber": "08034605723"
   }
 ]

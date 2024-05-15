@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { usePathname } from "next/navigation";
-import { Grid, Box, Typography, Chip, Stack, Tab, Tabs, Modal, Button, TextField } from "@mui/material";
+import { Grid, Box, Typography, Chip, Stack, Tab, Tabs, Modal, Button, TextField, Avatar, List, ListItem, ListItemText } from "@mui/material";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import DashboardCard from "../../components/shared/DashboardCard";
 import {
@@ -19,6 +19,7 @@ import TotalWallet from '../../components/dashboard/TotalWallet';
 import SavingsData from '../../components/dashboard/SavingsData';
 
 import usersData from "../../data/users.json";
+import { DataGrid } from '@mui/x-data-grid';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -65,8 +66,122 @@ function a11yProps(index: number) {
   };
 }
 
+const transaction = [
+  {
+    "id": "txn_001",
+    "type": "Savings",
+    "date": "2024-05-14",
+    "status": "Success",
+    "amount": 100.00,
+    "description": "Deposit to Savings Account"
+  },
+  {
+    "id": "txn_002",
+    "type": "Ajo",
+    "date": "2024-05-10",
+    "status": "Pending",
+    "amount": 50.00,
+    "description": "Contribution to Ajo Pool"
+  },
+  {
+    "id": "txn_003",
+    "type": "Wallet",
+    "date": "2024-05-13",
+    "status": "Completed",
+    "amount": 25.50,
+    "description": "Airtime Purchase"
+  },
+  {
+    "id": "txn_004",
+    "type": "Savings",
+    "date": "2024-05-08",
+    "status": "Success",
+    "amount": 75.00,
+    "description": "Transfer from Checking Account"
+  },
+  {
+    "id": "txn_005",
+    "type": "Wallet",
+    "date": "2024-05-12",
+    "status": "Failed",
+    "amount": 15.00,
+    "description": "Money Transfer (Insufficient Funds)"
+  }
+]
+
+const activityLogs = [
+  {
+    id: "log_001",
+    userId: "user_123",
+    username: "johndoe",
+    action: "Joined Plan",
+    planName: "Safe Saver",
+    timestamp: "2024-05-15 10:00:00",
+  },
+  {
+    id: "log_002",
+    userId: "user_456",
+    username: "janedoe",
+    action: "Created Plan",
+    planName: "Emergency Fund",
+    timestamp: "2024-05-15 11:30:25",
+  },
+  {
+    id: "log_003",
+    userId: "user_123",
+    username: "johndoe",
+    action: "Added Money to Wallet",
+    amount: 1000.00,
+    currency: "NGN",
+    timestamp: "2024-05-15 12:15:42",
+  },
+  {
+    id: "log_004",
+    userId: "user_789",
+    username: "alice",
+    action: "Withdrew Money from Wallet",
+    amount: 250.00,
+    currency: "NGN",
+    timestamp: "2024-05-15 14:00:11",
+  },
+  {
+    id: "log_005",
+    userId: "user_123",
+    username: "johndoe",
+    action: "Invested in Target Savings",
+    targetAmount: 5000.00,
+    currency: "NGN",
+    duration: 6, // months
+    timestamp: "2024-05-15 15:30:00",
+  },
+  // Add more activity logs here
+];
+
+
 export default function page({ params }: { params: { id: string } }) {
   const user = usersData.find((user) => user.id === params.id);
+  const columns = [
+    { field: 'id', headerName: 'Transaction ID', width: 150 },
+    {
+      field: 'type',
+      headerName: 'Transaction Type',
+      width: 120,
+      valueGetter: (params: any) => {
+        const type = params.row?.type; // Use optional chaining to access type safely
+        return type === 'Savings' ? 'Savings' : type === 'Ajo' ? 'Ajo' : 'Wallet';
+      },
+    },
+    { field: 'date', headerName: 'Date', width: 130 },
+    { field: 'status', headerName: 'Status', width: 100 },
+    // Add more columns for other transaction properties
+  ];
+  const activityLogColumns = [
+    { field: 'id', headerName: 'ID', width: 100 },
+    { field: 'userId', headerName: 'User ID', width: 120 },
+    { field: 'username', headerName: 'Username', width: 150 },
+    { field: 'action', headerName: 'Action', width: 200 },
+    { field: 'timestamp', headerName: 'Timestamp', width: 150 },
+  ];
 
   const [value, setValue] = React.useState(0);
 
@@ -207,20 +322,81 @@ export default function page({ params }: { params: { id: string } }) {
             >
               <Tab label="User Details" {...a11yProps(0)} />
               <Tab label="Transactions" {...a11yProps(1)} />
-              <Tab label="Item Three" {...a11yProps(2)} />
+              <Tab label="Activity Log" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            <Stack direction="row">
-              <Typography>Email:</Typography>
-              <Typography> {user?.email}</Typography>
-            </Stack>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <Grid container direction="column" alignItems="center">
+                  <Grid item>
+                    <Avatar alt="User Avatar" sx={{ width: 150, height: 150 }} src={user?.avatarUrl} />
+                  </Grid>
+                  <Grid item sx={{
+                    paddingTop: '10px'
+                  }}>
+                    <Typography variant="body2">{user?.joined}</Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={4}>
+                <List dense>
+                  <ListItem>
+                    <ListItemText primary="Email" secondary={user?.email} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary="Phone Number" secondary={user?.phoneNumber} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary="NIN" secondary={user?.nin} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary="BVN" secondary={user?.bvn} />
+                  </ListItem>
+                  {/* Add list items for other user information */}
+                </List>
+              </Grid>
+              <Grid item xs={4}>
+                <Grid container spacing={2}>
+                  <Grid item>
+                    <Button variant="contained" color="error">
+                      Ban User
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined">Send Alert</Button>
+                  </Grid>
+                  {/* Add other action buttons here */}
+                </Grid>
+              </Grid>
+            </Grid>
           </CustomTabPanel>
+
           <CustomTabPanel value={value} index={1}>
-            Item Two
+            <div style={{ height: 400, width: '100%' }}>
+              <DataGrid
+                rows={transaction}
+                columns={columns}
+                pageSize={10}
+                rowsPerPageOptions={[5, 10, 20]}
+                autoHeight
+                sortingMode="server" // Enable server-side sorting if needed
+                filterMode="server" // Enable server-side filtering if needed
+              />
+            </div>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            Item Three
+            <div style={{ height: 400, width: '100%' }}>
+              <DataGrid
+                rows={activityLogs}
+                columns={activityLogColumns}
+                pageSize={10}
+                rowsPerPageOptions={[5, 10, 20]}
+                autoHeight
+                sortingMode="server" // Enable server-side sorting if needed
+                filterMode="server" // Enable server-side filtering if needed
+              />
+            </div>
           </CustomTabPanel>
         </Box>
       </DashboardCard>
