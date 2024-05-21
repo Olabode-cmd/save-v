@@ -5,7 +5,14 @@ import { Stack, Typography, Avatar, Fab } from "@mui/material";
 import { IconArrowDownRight, IconUsersGroup } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)/components/shared/DashboardCard";
 
-const AllUsers = ({title, value}) => {
+interface CardInterface {
+  // id: number;
+  title: string;
+  value: string;
+  // age?: number; // Optional property
+  // isActive: boolean;
+}
+const AllUsers = ({title, value} : CardInterface) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;

@@ -19,6 +19,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Link from "next/link";
 import { useReducer } from "react";
 import AllUsers from "./AllUsers";
+import { useRouter } from 'next/navigation'
 
 const SavingsData = [
   {
@@ -120,9 +121,11 @@ const PlanTypeCell: React.FC<{ value: 'Target' | 'Group' }> = ({ value }) => {
 };
 
 const ActionCell: React.FC<{ row: UserSavings }> = ({ row }) => {
+  const router = useRouter()
   const handleViewDetails = () => {
     // Implement logic to handle viewing user's savings details (e.g., navigate to a detail page)
-    console.log('View details for user:', row.userId);
+    router.push(`/savings/${row.userId}`);
+    // Next 
   };
 
   return (
