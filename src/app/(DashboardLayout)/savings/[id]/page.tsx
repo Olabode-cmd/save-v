@@ -2,27 +2,20 @@
 "use client";
 
 import * as React from 'react';
-import { useState } from 'react';
-import { usePathname } from "next/navigation";
-import { Grid, Box, Typography, Chip, Stack, Tab, Tabs, Modal, Button, TextField, Avatar, List, ListItem, ListItemText } from "@mui/material";
+import { Grid, Box, Typography, Chip, Stack, Tab, Tabs, Modal, Button, TextField, List, ListItem } from "@mui/material";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import DashboardCard from "../../components/shared/DashboardCard";
 import {
   IconCalendarCheck,
-  IconMailCheck,
-  IconInbox,
 } from "@tabler/icons-react";
 import dynamic from "next/dynamic";
 import { useTheme } from "@mui/material/styles";
 
-import UserSavingsPlans from "../../components/dashboard/UserSavingsPlan";
-import UserAjoPlans from "../../components/dashboard/UserAjoPlans";
 import TotalWallet from '../../components/dashboard/TotalWallet';
 import SavingsData from '../../components/dashboard/SavingsData';
 
 import usersData from "../../data/users.json";
 import { DataGrid } from '@mui/x-data-grid';
-import SavingsTransactions from '../../components/dashboard/SavingsTransactions';
 import PlansMember from '../../components/dashboard/PlansMember';
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 

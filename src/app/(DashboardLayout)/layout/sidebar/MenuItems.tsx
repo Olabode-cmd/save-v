@@ -10,6 +10,9 @@ import {
   IconWallet,
   IconDiamond,
   IconHelpCircle,
+  IconBuildingBank,
+  IconSettingsCog,
+  IconDeviceAnalytics,
 } from "@tabler/icons-react";
 
 import { uniqueId } from "lodash";
@@ -46,9 +49,15 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
-    title: "Support",
-    icon: IconHelpCircle,
-    href: "/support",
+    title: "Investment",
+    icon: IconBuildingBank,
+    href: "/investment",
+  },
+  {
+    id: uniqueId(),
+    title: "Analytics",
+    icon: IconDeviceAnalytics,
+    href: "/analytics",
   },
   // {
   //   id: uniqueId(),
@@ -59,6 +68,18 @@ const Menuitems = [
   {
     navlabel: true,
     subheader: "Setting",
+  },
+  {
+    id: uniqueId(),
+    title: "Settings",
+    icon: IconSettingsCog,
+    href: "/settings",
+  },
+  {
+    id: uniqueId(),
+    title: "Support",
+    icon: IconHelpCircle,
+    href: "/support",
   },
   // {
   //   id: uniqueId(),

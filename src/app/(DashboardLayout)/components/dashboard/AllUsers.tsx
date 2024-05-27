@@ -9,10 +9,11 @@ interface CardInterface {
   // id: number;
   title: string;
   value: string;
+  showFooter: boolean;
   // age?: number; // Optional property
   // isActive: boolean;
 }
-const AllUsers = ({title, value} : CardInterface) => {
+const AllUsers = ({ title, value, showFooter }: CardInterface) => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -23,7 +24,7 @@ const AllUsers = ({title, value} : CardInterface) => {
   const optionscolumnchart: any = {
     chart: {
       type: "area",
-      fontFamily: "'Plus Jakarta Sans', sans-serif;",
+      fontFamily: "Roboto', sans-serif;",
       foreColor: "#adb0bb",
       toolbar: {
         show: false,
@@ -50,7 +51,7 @@ const AllUsers = ({title, value} : CardInterface) => {
       theme: theme.palette.mode === "dark" ? "dark" : "light",
     },
   };
-  
+
   const seriescolumnchart: any = [
     {
       name: "",
@@ -76,6 +77,7 @@ const AllUsers = ({title, value} : CardInterface) => {
           height="55px"
         />
       }
+      showFooter={showFooter}
     >
       <>
         <Typography variant="h3" fontWeight="700" mt="-20px">

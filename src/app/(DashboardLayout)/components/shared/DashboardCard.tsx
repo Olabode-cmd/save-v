@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Stack, Box } from "@mui/material";
+import { Card, CardContent, Typography, Stack, Box, CardActions } from "@mui/material";
 
 type Props = {
   title?: string;
@@ -23,6 +23,7 @@ const DashboardCard = ({
   headtitle,
   headsubtitle,
   middlecontent,
+  showFooter = true,
 }: Props) => {
   return (
     <Card sx={{ padding: 0 }} elevation={9} variant={undefined}>
@@ -63,7 +64,7 @@ const DashboardCard = ({
       )}
 
       {middlecontent}
-      {footer}
+      {showFooter && <CardActions>{footer}</CardActions>}
     </Card>
   );
 };

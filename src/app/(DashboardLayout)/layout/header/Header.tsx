@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   AppBar,
@@ -8,16 +8,31 @@ import {
   IconButton,
   Badge,
   Button,
+  Modal,
+  Typography,
 } from "@mui/material";
 import PropTypes from "prop-types";
 
 // components
 import Profile from "./Profile";
 import { IconBellRinging, IconMenu } from "@tabler/icons-react";
+import CustomModal from "../../components/dashboard/CustomModal";
 
 interface ItemType {
   toggleMobileSidebar: (event: React.MouseEvent<HTMLElement>) => void;
 }
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const Header = ({ toggleMobileSidebar }: ItemType) => {
   // const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
@@ -37,6 +52,11 @@ const Header = ({ toggleMobileSidebar }: ItemType) => {
     width: "100%",
     color: theme.palette.text.secondary,
   }));
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <AppBarStyled position="sticky" color="default">
@@ -61,11 +81,13 @@ const Header = ({ toggleMobileSidebar }: ItemType) => {
           color="inherit"
           aria-controls="msgs-menu"
           aria-haspopup="true"
+          onClick={handleOpen}
         >
           <Badge variant="dot" color="primary">
             <IconBellRinging size="21" stroke="1.5" />
           </Badge>
         </IconButton>
+
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
           <Box
@@ -75,10 +97,11 @@ const Header = ({ toggleMobileSidebar }: ItemType) => {
                 sm: "block",
               },
             }}
-          >
-          </Box>
+          ></Box>
           <Profile />
         </Stack>
+
+        <CustomModal open={open} onClose={handleClose} />
       </ToolbarStyled>
     </AppBarStyled>
   );

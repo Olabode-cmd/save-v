@@ -2,8 +2,6 @@
 "use client";
 
 import * as React from 'react';
-import { useState } from 'react';
-import { usePathname } from "next/navigation";
 import { Grid, Box, Typography, Chip, Stack, Tab, Tabs, Modal, Button, TextField, Avatar, List, ListItem, ListItemText } from "@mui/material";
 import PageContainer from "@/app/(DashboardLayout)/components/container/PageContainer";
 import DashboardCard from "../../components/shared/DashboardCard";
@@ -167,13 +165,12 @@ export default function page({ params }: { params: { id: string } }) {
       headerName: 'Transaction Type',
       width: 120,
       valueGetter: (params: any) => {
-        const type = params.row?.type; // Use optional chaining to access type safely
+        const type = params.row?.type;
         return type === 'Savings' ? 'Savings' : type === 'Ajo' ? 'Ajo' : 'Wallet';
       },
     },
     { field: 'date', headerName: 'Date', width: 130 },
     { field: 'status', headerName: 'Status', width: 100 },
-    // Add more columns for other transaction properties
   ];
   const activityLogColumns = [
     { field: 'id', headerName: 'ID', width: 100 },

@@ -2,6 +2,7 @@ import {
   Typography,
   Box,
   Button,
+  Grid,
   Table,
   TableBody,
   TableCell,
@@ -10,149 +11,148 @@ import {
   Chip,
   Paper,
 } from "@mui/material";
-import { IconFilePencil } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)//components/shared/DashboardCard";
-import TableContainer from "@mui/material/TableContainer";
-import BlankCard from "../shared/BlankCard";
-
 import Link from "next/link";
 
-const usersData = [
+import * as React from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import { useRouter } from "next/navigation";
+import { styled } from "@mui/material/styles";
+
+const sampleData = [
   {
     id: "SAV001",
     name: "Sunil Joshi",
-    created: "Created 2 days ago",
-    email: "suni@yahoo.com",
-    status: "Pending",
-    pbg: "secondary.main",
-    savings: "39,000",
-    savingsName: "Sunil Macbook Savings",
+    createdBy: "Sunil Joshi",
+    status: "Active",
+    amount: "39,000",
+    ajoName: "Grace Estate Ajo",
+    nextUser: "Auntie Mary",
+    members: 13,
   },
   {
     id: "SAV002",
     name: "Andrew McDownland",
-    created: "Created 4 days ago",
-    email: "andrewmc@gmail.com",
-    status: "Pending",
-    pbg: "secondary.main",
-    savings: "21,450",
-    savingsName: "Andrew tuition Savings",
-  },
-  {
-    id: "SAV003",
-    name: "Christopher Jamil",
-    created: "Created 2 weeks ago",
-    email: "chris@outlook.com",
-    status: "Verified",
-    pbg: "success.main",
-    savings: "12,900",
-    savingsName: "Christmas Savings",
-  },
-  {
-    id: "SAV004",
-    name: "Nirav Joshi",
-    created: "Created 3 weeks ago",
-    email: "nirav77@gmail.com",
-    status: "Verified",
-    pbg: "success.main",
-    savings: "55,200",
-    savingsName: "Nirav tuition",
+    createdBy: "Andrew McDownland",
+    status: "Closed",
+    amount: "21,450",
+    ajoName: "Community Savings",
+    nextUser: "Angelina Jolie",
+    members: 8,
   },
 ];
 
-const AjoTable = () => {
+interface AjoTables {
+  id: string;
+  userId: string;
+  created: string; // Optional
+  ajo: string;
+  ajoName: number;
+  status: 'Active' | 'Inactive' | 'Closed';
+  nextUser: string;
+  members: number;
+  // Add other properties as needed
+}
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.primary.main,
+}));
+
+const StatusCellWrapper = styled("div")(({ theme, value }) => ({
+  color: value === "Active" ? "green" : value === "Inactive" ? "grey" : "red",
+  fontWeight: "bold",
+}));
+
+
+const StatusCell: React.FC<{ value: "Active" | "Inactive" | "Closed" }> = ({
+  value,
+}) => {
+  let statusText = "";
+
+  // Use a conditional statement to handle each possible value
+  if (value === "Active") {
+    statusText = "Active";
+  } else if (value === "Inactive") {
+    statusText = "Inactive";
+  } else if (value === "Closed") {
+    statusText = "Closed";
+  } else {
+    statusText = "Unknown"; // Handle unknown status values gracefully
+  }
+
   return (
-    <DashboardCard title="Customer Ajo List">
-      <Box sx={{ overflow: "auto" }}>
+    <StatusCellWrapper value={value}>
+      <div>{statusText}</div>
+    </StatusCellWrapper>
+  );
+};
+
+
+const ActionButton: React.FC<{ row: AjoTables }> = ({ row }) => {
+  const router = useRouter();
+  const handleViewDetails = () => {
+    // Implement logic to handle viewing user's savings details (e.g., navigate to a detail page)
+    router.push(`/ajo/${row.id}`);
+    // Next
+  };
+
+  return (
+    <Grid container justifyContent="center">
+      <Button
+        variant="contained"
+        size="small"
+        sx={{ padding: "5px 20px" }}
+        onClick={handleViewDetails}
+      >
+        View Details
+      </Button>
+    </Grid>
+  );
+};
+
+const AjoTable = () => {
+  const columns = [
+    { field: "id", headerName: "ID", width: 100 },
+    { field: "createdBy", headerName: "Created By", width: 150 },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 100,
+      renderCell: StatusCell,
+    },
+    { field: "amount", headerName: "Amount", width: 100 },
+    { field: "ajoName", headerName: "Ajo Name", width: 150 },
+    { field: "members", headerName: "Members", width: 80 },
+    { field: "nextUser", headerName: "Next Ajo Collector", width: 150 },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 125,
+      renderCell: (params) => <ActionButton {...params} />,
+    },
+  ];
+
+  return (
+     <DashboardCard title="Customer Ajo List">
+      <Box sx={{ overflow: "scrollable" }}>
         <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
-          <Table
-            sx={{
-              whiteSpace: "nowrap",
-            }}
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Id
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Name
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    User
-                  </Typography>
-                </TableCell>
-                <TableCell align="right">
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Amount
-                  </Typography>
-                </TableCell>
-                <TableCell align="right">
-                  <Typography variant="subtitle2" fontWeight={600}>
-                    Action
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {usersData.map((user) => (
-                <TableRow key={user.name}>
-                  <TableCell>
-                    <Typography
-                      sx={{
-                        fontSize: "15px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      {user.id}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Box>
-                        <Typography variant="subtitle2" fontWeight={600}>
-                          {user.savingsName}
-                        </Typography>
-                        <Typography
-                          color="textSecondary"
-                          sx={{
-                            fontSize: "13px",
-                          }}
-                        >
-                          {user.created}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="h6">{user.name}</Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Typography variant="h6">&#8358; {user.savings}</Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Link href={`/users/${user.id}`}>
-                      <Button variant="contained">View details</Button>
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <Grid container spacing={3}>
+            <Grid item xs={12} lg={12}>
+              <DataGrid
+                rows={sampleData}
+                columns={columns}
+                pageSize={10}
+                rowsPerPageOptions={[5, 10, 20]}
+                autoHeight
+                sortingMode="server" // Enable server-side sorting if needed
+                filterMode="server" // Enable server-side filtering if needed
+              />
+            </Grid>
+          </Grid>
         </Box>
       </Box>
     </DashboardCard>
-  );
-};
+  )
+}
 
 export default AjoTable;

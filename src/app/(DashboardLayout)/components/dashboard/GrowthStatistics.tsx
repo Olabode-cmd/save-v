@@ -12,7 +12,7 @@ const options = [
   "Something else here",
 ];
 
-const RecentUserActivity = () => {
+const GrowthStatistics = () => {
   // menu
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -147,4 +147,4 @@ const RecentUserActivity = () => {
   );
 };
 
-export default RecentUserActivity;
+export default GrowthStatistics;

@@ -1,64 +1,11 @@
 import {
-  Typography,
   Box,
   Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Chip,
-  Paper,
   Grid,
 } from "@mui/material";
-import { IconFilePencil } from "@tabler/icons-react";
 import DashboardCard from "@/app/(DashboardLayout)//components/shared/DashboardCard";
-import TableContainer from "@mui/material/TableContainer";
-import BlankCard from "../shared/BlankCard";
 import { DataGrid } from '@mui/x-data-grid';
-import Link from "next/link";
-import { useReducer } from "react";
-import AllUsers from "./AllUsers";
 import { useRouter } from 'next/navigation'
-
-const SavingsData = [
-  {
-    id: "SAV001",
-    user: "Segun Adams",
-    created: "Created 2 days ago",
-    amount: "39,000",
-    savingsName: "Sunil Macbook",
-    type: "Target",
-    goal: "500,000",
-  },
-  {
-    id: "SAV002",
-    useReducer: "Boluwatife Alao",
-    created: "Created 4 days ago",
-    savingsName: "Ojo Ola Birthday",
-    type: "Group",
-    goal: "300,000",
-    amount: "150,000",
-  },
-  {
-    id: "SAV003",
-    user: "Christopher Jamil",
-    created: "Created 2 weeks ago",
-    savingsName: "Christmas Savings",
-    type: "Target",
-    goal: "100,000",
-    amount: "5,000",
-  },
-  {
-    id: "SAV004",
-    user: "Christopher Jamil",
-    created: "Created 10 months ago",
-    savingsName: "Car Savings",
-    type: "Target",
-    goal: "10,000,000",
-    amount: "500,000",
-  },
-];
 
 const sampleData = [
   {
@@ -130,7 +77,12 @@ const ActionCell: React.FC<{ row: UserSavings }> = ({ row }) => {
 
   return (
     <Grid container justifyContent="center">
-      <Button variant="outlined" size="small" onClick={handleViewDetails}>
+      <Button
+        variant="contained"
+        size="small"
+        sx={{ padding: "5px 20px" }}
+        onClick={handleViewDetails}
+      >
         View Details
       </Button>
     </Grid>
@@ -154,43 +106,28 @@ const SavingsTable = () => {
     {
       field: 'action',
       headerName: 'Action',
-      width: 100,
+      width: 125,
       renderCell: ActionCell,
     },
   ];
   return (
     <DashboardCard title="All Active Savings Plans">
-      <Box sx={{ overflow: "auto" }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3} sx={{ marginBottom: "10px" }}>
-            <AllUsers title="Total Savings Plan" value="700" />
+      <Box sx={{ overflow: "scrollable" }}>
+        <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} lg={12}>
+              <DataGrid
+                rows={sampleData}
+                columns={columns}
+                pageSize={10}
+                rowsPerPageOptions={[5, 10, 20]}
+                autoHeight
+                sortingMode="server" // Enable server-side sorting if needed
+                filterMode="server" // Enable server-side filtering if needed
+              />
+            </Grid>
           </Grid>
-
-          <Grid item xs={12} md={6} lg={3} sx={{ marginBottom: "10px" }}>
-            <AllUsers title="Total Savings Balance" value="230,000.00" />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={3} sx={{ marginBottom: "10px" }}>
-            <AllUsers title="New Saver" value="6" />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={3} sx={{ marginBottom: "10px" }}>
-            <AllUsers title="Total Deposit" value="6" />
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12} lg={12}>
-            <DataGrid
-              rows={sampleData}
-              columns={columns}
-              pageSize={10}
-              rowsPerPageOptions={[5, 10, 20]}
-              autoHeight
-              sortingMode="server" // Enable server-side sorting if needed
-              filterMode="server" // Enable server-side filtering if needed
-            />
-          </Grid>
-        </Grid>
+        </Box>
       </Box>
     </DashboardCard>
   );
